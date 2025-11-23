@@ -1,4 +1,5 @@
 import Text from "./components/text";
+import Button from "./components/button";
 
 export default function App() {
 
@@ -11,6 +12,9 @@ export default function App() {
           <Text variant="body-md-bold">Hair day</Text>
           <Text variant="body-sm">Hair day</Text>
           <Text variant="body-sm-bold">Hair day</Text>
+        </div>
+        <div className="flex flex-col gap-1">
+          <Button>AGENDAR</Button>
         </div>
       </div>
     </>
