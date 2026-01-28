@@ -10,6 +10,8 @@ import MoonStarsIcon from "./assets/icons/moonstars.svg?react";
 import SunHorizonIcon from "./assets/icons/sunhorizon.svg?react";
 import TrashIcon from "./assets/icons/trash.svg?react";
 import UserSquareIcon from "./assets/icons/usersquare.svg?react"
+import InputText from "./components/input-text";
+import ButtonIcon from "./components/button-icon";
 
 
 export default function App() {
@@ -37,6 +39,12 @@ export default function App() {
           <Icon svg={SunHorizonIcon}/>
           <Icon svg={TrashIcon}/>
           <Icon svg={UserSquareIcon}/>
+        </div>
+        <div>
+          <InputText placeholder="Nome do cliente"/>
+        </div>
+        <div>
+          <ButtonIcon />
         </div>
       </div>
     </>

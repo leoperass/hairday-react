@@ -3,7 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 const IconVariants = cva("inline-block shrink-0", {
     variants: {
         variant: {
-            primary: "fill-gray-100"
+            primary: "fill-gray-100",
+            secondary: "fill-yellow",
         },
         size: {
             sm: "h-5 w-5"
