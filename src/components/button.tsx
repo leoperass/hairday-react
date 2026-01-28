@@ -8,7 +8,7 @@ export const buttonVariants = cva('flex items-center justify-center cursor-point
             primary: "bg-yellow border border-transparent hover:border-yellow-light text-gray-900"
         },
         size: {
-            md: "h-14 px-4"
+            md: "h-14 w-[340px] px-4"
         },
         disabled: {
             true: "opacity-30 pointer-events-none"
