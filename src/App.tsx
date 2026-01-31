@@ -1,6 +1,6 @@
-import Text from "./components/text";
-import Button from "./components/button";
-import Icon from "./components/icon";
+import Text from "./components/ui/text";
+import Button from "./components/ui/button";
+import Icon from "./components/ui/icon";
 import CalendarBlankIcon from "./assets/icons/calendarBlank.svg?react";
 import CaretDownIcon from "./assets/icons/caretdown.svg?react";
 import CaretLeftIcon from "./assets/icons/caretleft.svg?react";
@@ -10,8 +10,9 @@ import MoonStarsIcon from "./assets/icons/moonstars.svg?react";
 import SunHorizonIcon from "./assets/icons/sunhorizon.svg?react";
 import TrashIcon from "./assets/icons/trash.svg?react";
 import UserSquareIcon from "./assets/icons/usersquare.svg?react"
-import InputText from "./components/input-text";
-import ButtonIcon from "./components/button-icon";
+import InputText from "./components/ui/input-text";
+import ButtonIcon from "./components/ui/button-icon";
+import TimeSelect from "./components/time-select/time-select";
 
 
 export default function App() {
@@ -30,21 +31,24 @@ export default function App() {
           <Button>AGENDAR</Button>
         </div>
         <div className="flex flex-wrap gap-1">
-          <Icon svg={CalendarBlankIcon}/>
-          <Icon svg={CaretDownIcon}/>
-          <Icon svg={CaretLeftIcon}/>
-          <Icon svg={CaretRightIcon}/>
-          <Icon svg={CloudSunIcon}/>
-          <Icon svg={MoonStarsIcon}/>
-          <Icon svg={SunHorizonIcon}/>
-          <Icon svg={TrashIcon}/>
-          <Icon svg={UserSquareIcon}/>
+          <Icon svg={CalendarBlankIcon} />
+          <Icon svg={CaretDownIcon} />
+          <Icon svg={CaretLeftIcon} />
+          <Icon svg={CaretRightIcon} />
+          <Icon svg={CloudSunIcon} />
+          <Icon svg={MoonStarsIcon} />
+          <Icon svg={SunHorizonIcon} />
+          <Icon svg={TrashIcon} />
+          <Icon svg={UserSquareIcon} />
         </div>
         <div>
-          <InputText placeholder="Nome do cliente"/>
+          <InputText placeholder="Nome do cliente" />
         </div>
         <div>
-          <ButtonIcon />
+          <ButtonIcon icon={TrashIcon} />
+        </div>
+        <div>
+          <TimeSelect time={{ id: 1, label: "9:00" }} />
         </div>
       </div>
     </>
