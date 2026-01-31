@@ -11,19 +11,19 @@ export const inputTextWrapperVariants = cva(
         bg-transparent focus-within:!border-yellow-dark
         flex items-center gap-3 rounded transition
     `, {
-        variants: {
-            size: {
-                md: "h-10 w-[340px] p-3"
-            },
-            disabled: {
-                true: "pointer-events-none"
-            }
+    variants: {
+        size: {
+            md: "h-10 w-[340px] p-3"
         },
-        defaultVariants: {
-            size: "md",
-            disabled: false,
+        disabled: {
+            true: "pointer-events-none"
         }
+    },
+    defaultVariants: {
+        size: "md",
+        disabled: false,
     }
+}
 )
 
 export const inputTextInputVariants = cva(
@@ -33,17 +33,17 @@ export const inputTextInputVariants = cva(
     `
 )
 
-interface InputTextProps 
+interface InputTextProps
     extends VariantProps<typeof inputTextWrapperVariants>,
     Omit<React.ComponentProps<"input">, "size" | "disabled"> {
-        icon?: React.ComponentProps<typeof Icon>["svg"],
-        error?: React.ReactNode;
-    }
+    icon?: React.ComponentProps<typeof Icon>["svg"],
+    error?: React.ReactNode;
+}
 
-export default function InputText({size, disabled, icon, error, className,...props}: InputTextProps) {
+export default function InputText({ size, disabled, icon, error, className, ...props }: InputTextProps) {
     return (
-        <div className={inputTextContainerVariants({className})}>
-            <div className={inputTextWrapperVariants({size,disabled})}>
+        <div className={inputTextContainerVariants({ className })}>
+            <div className={inputTextWrapperVariants({ size, disabled })}>
                 <Icon svg={UserSquare} variant="secondary" />
                 <input
                     className={inputTextInputVariants()}
@@ -51,7 +51,7 @@ export default function InputText({size, disabled, icon, error, className,...pro
                     {...props}
                 />
             </div>
-            { error && (
+            {error && (
                 <Text variant="body-sm" className="!text-accent-red">
                     {error}
                 </Text>

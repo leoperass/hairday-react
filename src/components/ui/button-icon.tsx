@@ -8,26 +8,26 @@ export const buttonIconVariants = cva(
         bg-transparent fill-yellow focus:fill-yellow-dark cursor-pointer transition group 
         hover:fill-yellow-dark
     `, {
-        variants: {
-            size: {
-                md: "w-4 h-4"
-            }
-        },
-        defaultVariants: {
-            size: "md"
+    variants: {
+        size: {
+            md: "w-4 h-4"
         }
+    },
+    defaultVariants: {
+        size: "md"
     }
+}
 )
 
 interface ButtonIconProps extends React.ComponentProps<"button">,
     VariantProps<typeof buttonIconVariants> {
-    icon: React.ComponentProps<typeof Icon>
+    icon: React.ComponentProps<typeof Icon>["svg"]
 }
 
-export default function ButtonIcon({size}: ButtonIconProps) {
+export default function ButtonIcon({ icon: IconSvg, size, ...props }: ButtonIconProps) {
     return (
-        <button>
-            <Icon svg={TrashIcon} className={buttonIconVariants({size})} />
+        <button {...props}>
+            <Icon svg={IconSvg} className={buttonIconVariants({ size })} />
         </button>
     )
 }
