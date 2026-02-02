@@ -1,5 +1,4 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import Text from "../ui/text";
 import { useState } from "react";
 import type { Time } from "../../data/time";
 
@@ -36,13 +35,12 @@ interface TimeSelectProps extends Omit<React.ComponentProps<"button">, 'disabled
 
 export default function TimeSelect({ time, size, selected, disabled, ...props }: TimeSelectProps) {
 
-    const [isSelected, setIsSelected] = useState(selected ?? false);
+    
 
     return (
         <button
             disabled={!!disabled}
-            onClick={() => setIsSelected(prev => !prev)}
-            className={timeSelectVariants({ size, selected: isSelected, disabled })} {...props}
+            className={timeSelectVariants({ size, disabled, selected })} {...props}
         >
             {time.label}
         </button>

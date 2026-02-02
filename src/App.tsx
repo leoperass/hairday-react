@@ -13,6 +13,9 @@ import UserSquareIcon from "./assets/icons/usersquare.svg?react"
 import InputText from "./components/ui/input-text";
 import ButtonIcon from "./components/ui/button-icon";
 import TimeSelect from "./components/time-select/time-select";
+import TimeList from "./components/time-select/time-list";
+import InputData from "./components/ui/Date-input";
+import DateInput from "./components/ui/Date-input";
 
 
 export default function App() {
@@ -49,6 +52,12 @@ export default function App() {
         </div>
         <div>
           <TimeSelect time={{ id: 1, label: "9:00" }} />
+        </div>
+        <div>
+          <TimeList disabled/>
+        </div>
+        <div>
+          <DateInput />
         </div>
       </div>
     </>
