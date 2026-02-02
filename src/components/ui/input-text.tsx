@@ -1,6 +1,6 @@
 import Icon from "./icon";
 import Text from "./text";
-import UserSquare from "../assets/icons/usersquare.svg?react";
+import UserSquare from "./../../assets/icons/usersquare.svg?react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const inputTextContainerVariants = cva("flex flex-col gap-1");
