@@ -14,15 +14,14 @@ import InputText from "./components/ui/input-text";
 import ButtonIcon from "./components/ui/button-icon";
 import TimeSelect from "./components/time-select/time-select";
 import TimeList from "./components/time-select/time-list";
-import InputData from "./components/ui/Date-input";
-import DateInput from "./components/ui/Date-input";
+import DateInput from "./components/ui/date-input";
 
 
 export default function App() {
 
   return (
     <>
-      <div className="grid gap-3 place-items-center items-center h-screen bg-gray-800">
+      <div className="grid gap-3 place-items-center items-center min-h-screen bg-gray-800">
         <div className="flex flex-wrap gap-1">
           <Text variant="body-lg" className="text-gray-100">Hair day</Text>
           <Text variant="body-md">Hair day</Text>
@@ -48,6 +47,9 @@ export default function App() {
           <InputText placeholder="Nome do cliente" />
         </div>
         <div>
+          <DateInput />
+        </div>
+        <div>
           <ButtonIcon icon={TrashIcon} />
         </div>
         <div>
@@ -56,9 +58,7 @@ export default function App() {
         <div>
           <TimeList disabled/>
         </div>
-        <div>
-          <DateInput />
-        </div>
+        
       </div>
     </>
   );
