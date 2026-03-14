@@ -15,12 +15,12 @@ export const dateInputWrapperVariants = cva(
     `
         border border-solid border-gray-500
         bg-transparent focus-within:!border-yellow-dark
-        flex items-center gap-3 rounded transition
+        flex items-center gap-3 rounded-lg transition
     `,
     {
         variants: {
             size: {
-                md: "h-10 w-[340px] p-3",
+                md: "h-10 w-[340px] p-6 pl-2",
             },
         },
         defaultVariants: {
@@ -54,7 +54,7 @@ export default function DateInput({size,error,...props}: DataInputProps) {
     return (
         <div className={dateInputContainerVariants()}>
             <div
-                onClick={() => inputRef.current?.showPicker()}
+                onClick={() => inputRef.current?.showPicker?.()}
                 className={dateInputWrapperVariants({size})}
             >
                 
