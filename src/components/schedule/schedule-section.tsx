@@ -19,9 +19,10 @@ export default function ScheduleSection({
     const hasAppointments= React.Children.count(children) > 0;
 
     return (
-        <section className="w-full border rounded-lg border-gray-600 p-4">
+        <section className="w-full border rounded-lg border-gray-600">
 
-            <div className="flex items-center justify-between">
+            {/* HEADER */}
+            <div className="flex items-center justify-between px-4 py-3">
 
                 <div className="flex items-center gap-2">
                     <Icon svg={icon} variant="secondary"/>
@@ -31,23 +32,28 @@ export default function ScheduleSection({
                     </Text>
                 </div>
 
-                <Text as="span" variant="body-md">
+                <Text as="span" variant="body-sm">
                     {period}
                 </Text>
 
             </div>
 
-            <div className="-mx-4 my-3 border-b border-gray-600" />
+            {/* DIVIDER */}
+            <div className="h-px bg-gray-600" />
 
-            {hasAppointments ? (
-                <ul className="space-y-3">
-                    {children}
-                </ul>
-            ) : (
-                <Text as="p" variant="body-sm">
-                    Nenhum agendamento para este período 
-                </Text>
-            )}
+
+            {/* CONTENT */}
+            <div className="px-4 py-3">
+                {hasAppointments ? (
+                    <ul className="space-y-3">
+                        {children}
+                    </ul>
+                ) : (
+                    <Text as="p" variant="body-sm">
+                        Nenhum agendamento para este período
+                    </Text>
+                )}
+            </div>
 
         </section>
     )

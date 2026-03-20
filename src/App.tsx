@@ -12,9 +12,12 @@ import TrashIcon from "./assets/icons/trash.svg?react";
 import UserSquareIcon from "./assets/icons/usersquare.svg?react"
 import InputText from "./components/ui/input-text";
 import ButtonIcon from "./components/ui/button-icon";
-import TimeSelect from "./components/time-select/time-select";
-import TimeList from "./components/time-select/time-list";
+import TimeSelect from "./components/time/time-select";
+import TimeList from "./components/time/time-list";
 import DateInput from "./components/ui/date-input";
+import ScheduleSection from "./components/schedule/schedule-section";
+import ScheduleCard from "./components/schedule/schedule-card";
+import ScheduleBoard from "./components/schedule/schedule-board";
 
 
 export default function App() {
@@ -22,7 +25,7 @@ export default function App() {
   return (
     <>
       <div className="grid gap-3 place-items-center items-center min-h-screen bg-gray-800">
-        <div className="flex flex-wrap gap-1">
+        {/* <div className="flex flex-wrap gap-1">
           <Text variant="body-lg" className="text-gray-100">Hair day</Text>
           <Text variant="body-md">Hair day</Text>
           <Text variant="body-md-bold">Hair day</Text>
@@ -56,7 +59,19 @@ export default function App() {
           <TimeSelect time={{ id: 1, label: "9:00" }} />
         </div>
         <div>
-          <TimeList disabled/>
+          <TimeList/>
+        </div> */}
+
+        {/* <div>
+          <ScheduleSection title="Manhã" period="9h-12h" icon={SunHorizonIcon}/>
+        </div>  */}
+
+        {/* <div>
+          <ScheduleCard/>
+        </div> */}
+
+        <div>
+          <ScheduleBoard/>
         </div>
         
       </div>

@@ -26,7 +26,8 @@ export default function ScheduleCard() {
             <div className="flex flex-col gap-2">
                 <Text variant="body-md-bold">Data</Text>
                 <DateInput 
-                    onChange={(e) => setSelectedDate(e.target.value)}         
+                    onChange={(e) => setSelectedDate(e.target.value)} 
+                    defaultToday={false}        
                 />
             </div>
 
