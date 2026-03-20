@@ -15,12 +15,13 @@ export const dateInputWrapperVariants = cva(
     `
         border border-solid border-gray-500
         bg-transparent focus-within:!border-yellow-dark
-        flex items-center gap-3 rounded-lg transition
+        flex items-center rounded-lg transition
     `,
     {
         variants: {
             size: {
                 md: "h-10 w-[340px] p-6 pl-2",
+                lg: "h-[56px] w-[190px] px-3",
             },
         },
         defaultVariants: {
@@ -31,7 +32,7 @@ export const dateInputWrapperVariants = cva(
 
 export const dateInputFieldVariants= cva(
     `
-        flex-1 bg-transparent border-none outline-none
+        flex-1 min-w-0 bg-transparent border-none outline-none
         text-gray-200
         appearance-none
         [&::-webkit-calendar-picker-indicator]:opacity-0
@@ -43,9 +44,10 @@ interface DataInputProps
     extends VariantProps<typeof dateInputWrapperVariants>,
         Omit<React.ComponentProps<"input">, 'size' | 'type'> {
             error?: React.ReactNode;
+            defaultToday?: boolean;
         }
 
-export default function DateInput({size,error,...props}: DataInputProps) {
+export default function DateInput({size,error,defaultToday,...props}: DataInputProps) {
 
     const inputRef = useRef<HTMLInputElement>(null);
     
@@ -58,12 +60,13 @@ export default function DateInput({size,error,...props}: DataInputProps) {
                 className={dateInputWrapperVariants({size})}
             >
                 
-                <Icon svg={Calendar} variant="secondary" />
+                <Icon svg={Calendar} variant="secondary" className="mr-3" />
 
                 <input
                     ref={inputRef}
                     type="date"
                     min={today}
+                    defaultValue={defaultToday ? today : undefined}
                     className={dateInputFieldVariants()}
                     {...props}
                 />
