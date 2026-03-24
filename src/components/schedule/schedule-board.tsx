@@ -4,8 +4,34 @@ import SunHorizonIcon from "./../../assets/icons/sunhorizon.svg?react"
 import CloudSunIcon from "./../../assets/icons/cloudsun.svg?react"
 import MoonStarsIcon from "./../../assets/icons/moonstars.svg?react"
 import DateInput from "../ui/date-input"
+import type { Schedule } from "../../types/schedule"
+import { times } from "../../data/time";
 
-export default function ScheduleBoard({}) {
+interface ScheduleBoardProps {
+    schedules: Schedule[]
+}
+
+export default function ScheduleBoard({ schedules }: ScheduleBoardProps) {
+
+    function getTimeLabel(timeId: number) {
+
+        const allTimes = [
+            ...times.morning,
+            ...times.afternoon,
+            ...times.night
+        ]
+
+        const time = allTimes.find(t => t.id === timeId)
+
+        return time?.label
+    }
+
+    function getPeriod(timeId: number) {
+        if (times.morning.some(t => t.id === timeId)) return "morning"
+        if (times.afternoon.some(t => t.id === timeId)) return "afternoon"
+        if (times.night.some(t => t.id === timeId)) return "night"
+    }
+
     return (
         <div className="w-full py-20">
 
@@ -32,21 +58,63 @@ export default function ScheduleBoard({}) {
             
 
                 <div className="space-y-3">
+
                     <ScheduleSection
                         title="Manhã"
                         period="9h-12h"
                         icon={SunHorizonIcon}
-                    />
+                    >
+                        {schedules
+                            .filter(schedule => getPeriod(schedule.timeId) === "morning")
+                            .map(schedule => (
+                                <Text
+                                    as="p"
+                                    variant="body-md"
+                                    key={`${schedule.date}-${schedule.timeId}`}
+                                >
+                                    {getTimeLabel(schedule.timeId)} - {schedule.client}
+                                </Text>
+                            ))
+                        }
+                    </ScheduleSection>
+
                     <ScheduleSection
                         title="Tarde"
                         period="13h-18h"
                         icon={CloudSunIcon}
-                    />
+                    >
+                        {schedules
+                            .filter(schedule => getPeriod(schedule.timeId) === "afternoon")
+                            .map(schedule => (
+                                <Text
+                                    as="p"
+                                    variant="body-md"
+                                    key={`${schedule.date}-${schedule.timeId}`}
+                                >
+                                    {getTimeLabel(schedule.timeId)} - {schedule.client}
+                                </Text>
+                            ))
+                        }
+                    </ScheduleSection>
+
                     <ScheduleSection
                         title="Noite"
                         period="19h-21h"
                         icon={MoonStarsIcon}
-                    />
+                    >
+                        {schedules
+                            .filter(schedule => getPeriod(schedule.timeId) === "night")
+                            .map(schedule => (
+                                <Text
+                                    as="p"
+                                    variant="body-md"
+                                    key={`${schedule.date}-${schedule.timeId}`}
+                                >
+                                    {getTimeLabel(schedule.timeId)} - {schedule.client}
+                                </Text>
+                            ))
+                        }
+                    </ScheduleSection>
                 </div>
             </div>
         </div>

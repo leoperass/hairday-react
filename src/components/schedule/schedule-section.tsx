@@ -43,7 +43,7 @@ export default function ScheduleSection({
 
 
             {/* CONTENT */}
-            <div className="px-4 py-3">
+            <div className="p-5 py-3">
                 {hasAppointments ? (
                     <ul className="space-y-3">
                         {children}
