@@ -32,6 +32,7 @@ export default function ScheduleBoard({ schedules }: ScheduleBoardProps) {
         if (times.night.some(t => t.id === timeId)) return "night"
     }
 
+
     return (
         <div className="w-full py-20">
 
@@ -77,6 +78,9 @@ export default function ScheduleBoard({ schedules }: ScheduleBoardProps) {
                             ))
                         }
                     </ScheduleSection>
+
+
+                
 
                     <ScheduleSection
                         title="Tarde"

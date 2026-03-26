@@ -1,4 +1,3 @@
-
 import ScheduleBoard from "./components/schedule/schedule-board";
 import { useState } from "react";
 import ScheduleCard from "./components/schedule/schedule-card";
@@ -8,7 +7,6 @@ type Schedule = {
   timeId: number
   client: string
 }
-
 
 export default function App() {
 const [schedules, setSchedules] = useState<Schedule[]>([]);
