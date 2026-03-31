@@ -6,12 +6,17 @@ import MoonStarsIcon from "./../../assets/icons/moonstars.svg?react"
 import DateInput from "../ui/date-input"
 import type { Schedule } from "../../types/schedule"
 import { times } from "../../data/time";
+import ScheduleItem from "./schedule-item"
 
 interface ScheduleBoardProps {
     schedules: Schedule[]
+    onRemoveSchedule: (timeId: number, data: string) => void
 }
 
-export default function ScheduleBoard({ schedules }: ScheduleBoardProps) {
+export default function ScheduleBoard({
+    schedules,
+    onRemoveSchedule 
+}: ScheduleBoardProps) {
 
     function getTimeLabel(timeId: number) {
 
@@ -68,13 +73,12 @@ export default function ScheduleBoard({ schedules }: ScheduleBoardProps) {
                         {schedules
                             .filter(schedule => getPeriod(schedule.timeId) === "morning")
                             .map(schedule => (
-                                <Text
-                                    as="p"
-                                    variant="body-md"
+                                <ScheduleItem 
                                     key={`${schedule.date}-${schedule.timeId}`}
-                                >
-                                    {getTimeLabel(schedule.timeId)} - {schedule.client}
-                                </Text>
+                                    time={getTimeLabel(schedule.timeId) || ""}
+                                    client={schedule.client}
+                                    onRemove={() => onRemoveSchedule(schedule.timeId, schedule.date)}
+                                />
                             ))
                         }
                     </ScheduleSection>
@@ -90,13 +94,12 @@ export default function ScheduleBoard({ schedules }: ScheduleBoardProps) {
                         {schedules
                             .filter(schedule => getPeriod(schedule.timeId) === "afternoon")
                             .map(schedule => (
-                                <Text
-                                    as="p"
-                                    variant="body-md"
+                                <ScheduleItem 
                                     key={`${schedule.date}-${schedule.timeId}`}
-                                >
-                                    {getTimeLabel(schedule.timeId)} - {schedule.client}
-                                </Text>
+                                    time={getTimeLabel(schedule.timeId) || ""}
+                                    client={schedule.client}
+                                    onRemove={() => onRemoveSchedule(schedule.timeId, schedule.date)}
+                                />
                             ))
                         }
                     </ScheduleSection>
@@ -109,13 +112,12 @@ export default function ScheduleBoard({ schedules }: ScheduleBoardProps) {
                         {schedules
                             .filter(schedule => getPeriod(schedule.timeId) === "night")
                             .map(schedule => (
-                                <Text
-                                    as="p"
-                                    variant="body-md"
+                                <ScheduleItem 
                                     key={`${schedule.date}-${schedule.timeId}`}
-                                >
-                                    {getTimeLabel(schedule.timeId)} - {schedule.client}
-                                </Text>
+                                    time={getTimeLabel(schedule.timeId) || ""}
+                                    client={schedule.client}
+                                    onRemove={() => onRemoveSchedule(schedule.timeId, schedule.date)}
+                                />
                             ))
                         }
                     </ScheduleSection>

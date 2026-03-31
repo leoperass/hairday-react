@@ -17,12 +17,21 @@ const [schedules, setSchedules] = useState<Schedule[]>([]);
 
   console.log(schedules);
 
+  function handleDeleteSchedule(timeId: number, date: string) {
+    setSchedules(prev =>
+      prev.filter(s => !(s.timeId === timeId && s.date === date))
+    )
+  }
+
   return (
     <>
       <div className="grid gap-3 place-items-center items-center min-h-screen bg-gray-800">
 
         <ScheduleCard onAddSchedule={handleAddSchedule} />
-        <ScheduleBoard schedules={schedules} />
+        <ScheduleBoard
+          schedules={schedules}
+          onRemoveSchedule={handleDeleteSchedule} 
+        />
         
       </div>
     </>
