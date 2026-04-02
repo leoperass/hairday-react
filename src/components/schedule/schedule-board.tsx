@@ -11,11 +11,15 @@ import ScheduleItem from "./schedule-item"
 interface ScheduleBoardProps {
     schedules: Schedule[]
     onRemoveSchedule: (timeId: number, data: string) => void
+    selectedDate: string
+    onChangeDate: (date:string) => void
 }
 
 export default function ScheduleBoard({
     schedules,
-    onRemoveSchedule 
+    onRemoveSchedule,
+    selectedDate,
+    onChangeDate, 
 }: ScheduleBoardProps) {
 
     function getTimeLabel(timeId: number) {
@@ -57,12 +61,13 @@ export default function ScheduleBoard({
                     
                     <DateInput
                         size="lg"
+                        value={selectedDate}
+                        onChange={(e) => onChangeDate(e.target.value)}
                         defaultToday
                     />
 
                 </header>
             
-
                 <div className="space-y-3">
 
                     <ScheduleSection
@@ -71,6 +76,7 @@ export default function ScheduleBoard({
                         icon={SunHorizonIcon}
                     >
                         {schedules
+                            .filter(schedule => schedule.date === selectedDate)
                             .filter(schedule => getPeriod(schedule.timeId) === "morning")
                             .map(schedule => (
                                 <ScheduleItem 
@@ -83,15 +89,13 @@ export default function ScheduleBoard({
                         }
                     </ScheduleSection>
 
-
-                
-
                     <ScheduleSection
                         title="Tarde"
                         period="13h-18h"
                         icon={CloudSunIcon}
                     >
                         {schedules
+                            .filter(schedule => schedule.date === selectedDate)
                             .filter(schedule => getPeriod(schedule.timeId) === "afternoon")
                             .map(schedule => (
                                 <ScheduleItem 
@@ -110,6 +114,7 @@ export default function ScheduleBoard({
                         icon={MoonStarsIcon}
                     >
                         {schedules
+                            .filter(schedule => schedule.date === selectedDate)                        
                             .filter(schedule => getPeriod(schedule.timeId) === "night")
                             .map(schedule => (
                                 <ScheduleItem 

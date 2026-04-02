@@ -11,6 +11,10 @@ type Schedule = {
 export default function App() {
 const [schedules, setSchedules] = useState<Schedule[]>([]);
 
+const [selectedDate, setSelectedDate] = useState<string>(
+  new Date().toISOString().split("T")[0]
+);
+
   function handleAddSchedule(schedule: Schedule) {
     setSchedules(prev => [...prev, schedule])
   }
@@ -30,7 +34,9 @@ const [schedules, setSchedules] = useState<Schedule[]>([]);
         <ScheduleCard onAddSchedule={handleAddSchedule} />
         <ScheduleBoard
           schedules={schedules}
-          onRemoveSchedule={handleDeleteSchedule} 
+          onRemoveSchedule={handleDeleteSchedule}
+          selectedDate={selectedDate}
+          onChangeDate={setSelectedDate}
         />
         
       </div>
