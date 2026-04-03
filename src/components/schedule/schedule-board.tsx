@@ -63,7 +63,6 @@ export default function ScheduleBoard({
                         size="lg"
                         value={selectedDate}
                         onChange={(e) => onChangeDate(e.target.value)}
-                        defaultToday
                     />
 
                 </header>

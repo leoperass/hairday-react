@@ -44,10 +44,9 @@ interface DataInputProps
     extends VariantProps<typeof dateInputWrapperVariants>,
         Omit<React.ComponentProps<"input">, 'size' | 'type'> {
             error?: React.ReactNode;
-            defaultToday?: boolean;
         }
 
-export default function DateInput({size,error,defaultToday,...props}: DataInputProps) {
+export default function DateInput({size,error,...props}: DataInputProps) {
 
     const inputRef = useRef<HTMLInputElement>(null);
     
@@ -66,7 +65,6 @@ export default function DateInput({size,error,defaultToday,...props}: DataInputP
                     ref={inputRef}
                     type="date"
                     min={today}
-                    defaultValue={defaultToday ? today : undefined}
                     className={dateInputFieldVariants()}
                     {...props}
                 />

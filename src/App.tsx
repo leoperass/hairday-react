@@ -9,11 +9,15 @@ type Schedule = {
 }
 
 export default function App() {
-const [schedules, setSchedules] = useState<Schedule[]>([]);
+  const [schedules, setSchedules] = useState<Schedule[]>([]);
 
-const [selectedDate, setSelectedDate] = useState<string>(
-  new Date().toISOString().split("T")[0]
-);
+  const [selectedDate, setSelectedDate] = useState<string>(
+    new Date().toISOString().split("T")[0]
+  );
+
+  const occupiedTimes = schedules
+  .filter(s => s.date === selectedDate)
+  .map(s => s.timeId)
 
   function handleAddSchedule(schedule: Schedule) {
     setSchedules(prev => [...prev, schedule])
@@ -31,7 +35,12 @@ const [selectedDate, setSelectedDate] = useState<string>(
     <>
       <div className="grid gap-3 place-items-center items-center min-h-screen bg-gray-800">
 
-        <ScheduleCard onAddSchedule={handleAddSchedule} />
+        <ScheduleCard
+          onAddSchedule={handleAddSchedule}
+          occupiedTimes={occupiedTimes}
+          selectedDate={selectedDate}
+          onChangeDate={setSelectedDate}
+        />
         <ScheduleBoard
           schedules={schedules}
           onRemoveSchedule={handleDeleteSchedule}

@@ -8,11 +8,18 @@ import type { Schedule } from "../../types/schedule";
 
 
 interface ScheduleCardsProps {
-    onAddSchedule: (schedule: Schedule) => void
+    onAddSchedule: (schedule: Schedule) => void;
+    occupiedTimes: number[];
+    selectedDate: string;
+    onChangeDate: (data: string) => void
 }
 
-export default function ScheduleCard({onAddSchedule}: ScheduleCardsProps) {
-    const [selectedDate, setSelectedDate] = useState<string | null>(null);
+export default function ScheduleCard({
+    onAddSchedule,
+    occupiedTimes,
+    selectedDate,
+    onChangeDate,
+}: ScheduleCardsProps) {
     const [selectedTime, setSelectedTime] = useState<number | null>(null);
     const [clientName, setClientName] = useState(""); 
 
@@ -51,8 +58,8 @@ export default function ScheduleCard({onAddSchedule}: ScheduleCardsProps) {
             <div className="flex flex-col gap-2">
                 <Text variant="body-md-bold">Data</Text>
                 <DateInput 
-                    onChange={(e) => setSelectedDate(e.target.value)} 
-                    defaultToday={false}        
+                    onChange={(e) => onChangeDate(e.target.value)}
+                    value={selectedDate}         
                 />
             </div>
 
@@ -61,6 +68,7 @@ export default function ScheduleCard({onAddSchedule}: ScheduleCardsProps) {
                 disabled={!selectedDate}
                 selectedTime={selectedTime}
                 onSelectTime={setSelectedTime}
+                occupiedTimes={occupiedTimes}
             />
 
             <div className="flex flex-col gap-2">

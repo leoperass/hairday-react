@@ -7,12 +7,14 @@ interface TimeListProps {
     disabled?: boolean;
     selectedTime: number | null;
     onSelectTime: (id: number | null) => void;
+    occupiedTimes: number[];
 }
 
 export default function TimeList({
     disabled,
     selectedTime,
-    onSelectTime
+    onSelectTime,
+    occupiedTimes,
 }: TimeListProps) {
 
     const periods = [
@@ -30,19 +32,25 @@ export default function TimeList({
                     <Text variant="body-md">{period.label}</Text>
 
                     <div className="grid grid-cols-4 gap-2">
-                        {period.list.map((time) => (
-                            <TimeSelect
-                                key={time.id}
-                                time={time}
-                                disabled={disabled}
-                                selected={selectedTime === time.id}
-                                onClick={() => {
-                                    onSelectTime(
-                                        selectedTime === time.id ? null : time.id  
-                                    )
-                                }}
-                            />
-                        ))}
+                        {period.list.map((time) => {
+                            const isOccupied = occupiedTimes.includes(time.id)
+
+                            return (
+                                <TimeSelect
+                                    key={time.id}
+                                    time={time}
+                                    disabled={disabled || isOccupied}
+                                    selected={selectedTime === time.id}
+                                    onClick={() => {
+                                        if (isOccupied) return
+
+                                        onSelectTime(
+                                            selectedTime === time.id ? null : time.id  
+                                        )
+                                    }}
+                                />
+                            )
+                        })}
                     </div>
                 </div>
             ))}
