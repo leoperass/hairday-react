@@ -97,6 +97,7 @@ export default function ScheduleBoard({
                         {schedules
                             .filter(schedule => schedule.date === selectedDate)
                             .filter(schedule => getPeriod(schedule.timeId) === "afternoon")
+                            .sort((a,b) => a.timeId - b.timeId)
                             .map(schedule => (
                                 <ScheduleItem 
                                     key={`${schedule.date}-${schedule.timeId}`}
@@ -116,6 +117,7 @@ export default function ScheduleBoard({
                         {schedules
                             .filter(schedule => schedule.date === selectedDate)                        
                             .filter(schedule => getPeriod(schedule.timeId) === "night")
+                            .sort((a,b) => a.timeId - b.timeId)
                             .map(schedule => (
                                 <ScheduleItem 
                                     key={`${schedule.date}-${schedule.timeId}`}
