@@ -1,6 +1,8 @@
 import ScheduleBoard from "./components/schedule/schedule-board";
 import { useState } from "react";
 import ScheduleCard from "./components/schedule/schedule-card";
+import logoHairDay from "./assets/img/logo.png";
+import Icon from "./components/ui/icon";
 
 type Schedule = {
   date: string
@@ -33,20 +35,34 @@ export default function App() {
 
   return (
     <>
-      <div className="grid gap-3 place-items-center items-center min-h-screen bg-gray-800">
+      <div className="flex items-center py-6 justify-center min-h-screen bg-gray-800">
 
-        <ScheduleCard
-          onAddSchedule={handleAddSchedule}
-          occupiedTimes={occupiedTimes}
-          selectedDate={selectedDate}
-          onChangeDate={setSelectedDate}
-        />
-        <ScheduleBoard
-          schedules={schedules}
-          onRemoveSchedule={handleDeleteSchedule}
-          selectedDate={selectedDate}
-          onChangeDate={setSelectedDate}
-        />
+        <div className="flex flex-col lg:flex-row w-full max-w-[1400px] mx-3 gap-6 lg:gap-35">
+
+            <div className="relative">
+              <img
+                src={logoHairDay}
+                alt="logo"
+                className="absolute -top-7 -left-5"/>
+
+              <ScheduleCard
+                onAddSchedule={handleAddSchedule}
+                occupiedTimes={occupiedTimes}
+                selectedDate={selectedDate}
+                onChangeDate={setSelectedDate}
+              />
+            </div>
+
+          <div className="flex-1 max-w-[760px]">
+            <ScheduleBoard
+              schedules={schedules}
+              onRemoveSchedule={handleDeleteSchedule}
+              selectedDate={selectedDate}
+              onChangeDate={setSelectedDate}
+            />
+          </div>
+
+        </div>
         
       </div>
     </>

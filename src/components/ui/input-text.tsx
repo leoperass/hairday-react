@@ -13,7 +13,7 @@ export const inputTextWrapperVariants = cva(
     `, {
     variants: {
         size: {
-            md: "h-10 w-[340px] p-3"
+            md: "h-10 w-full p-3"
         },
         disabled: {
             true: "pointer-events-none"

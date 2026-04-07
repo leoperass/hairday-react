@@ -20,7 +20,7 @@ export const dateInputWrapperVariants = cva(
     {
         variants: {
             size: {
-                md: "h-10 w-[340px] p-6 pl-2",
+                md: "h-10 w-full p-6 pl-2",
                 lg: "h-[56px] w-[190px] px-3",
             },
         },
