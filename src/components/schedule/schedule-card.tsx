@@ -5,6 +5,8 @@ import DateInput from "../ui/date-input";
 import InputText from "../ui/input-text";
 import Text from "../ui/text";
 import type { Schedule } from "../../types/schedule";
+import { toast } from "sonner";
+import { getTimeLabel } from "../../utils/getTimeLabel";
 
 
 interface ScheduleCardsProps {
@@ -26,14 +28,31 @@ export default function ScheduleCard({
     function handleSubmit(e: FormEvent) {
         e.preventDefault();
 
-        if (!selectedDate || selectedTime === null || !clientName.trim()) {
-            return
+        if (!selectedDate) {
+            toast.error("Selecionar uma data!");
+            return;
+        }
+
+        if (selectedTime === null) {
+            toast.error("Escolha um horário!");
+            return;
+        }
+
+        if(!clientName.trim()) {
+            toast.error("Digite o nome do cliente!");
+            return;
         }
 
         onAddSchedule({
             date: selectedDate,
             timeId: selectedTime,
             client: clientName
+        });
+
+        const timeLabel = getTimeLabel(selectedTime!)
+
+        toast.success("Agendamento realizado com sucesso!💈", {
+            description: `${clientName} às ${timeLabel}`
         });
 
         setSelectedTime(null);

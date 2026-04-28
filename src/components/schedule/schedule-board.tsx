@@ -7,6 +7,7 @@ import DateInput from "../ui/date-input"
 import type { Schedule } from "../../types/schedule"
 import { times } from "../../data/time";
 import ScheduleItem from "./schedule-item"
+import { getTimeLabel } from "../../utils/getTimeLabel";
 
 interface ScheduleBoardProps {
     schedules: Schedule[]
@@ -22,25 +23,11 @@ export default function ScheduleBoard({
     onChangeDate, 
 }: ScheduleBoardProps) {
 
-    function getTimeLabel(timeId: number) {
-
-        const allTimes = [
-            ...times.morning,
-            ...times.afternoon,
-            ...times.night
-        ]
-
-        const time = allTimes.find(t => t.id === timeId)
-
-        return time?.label
-    }
-
     function getPeriod(timeId: number) {
         if (times.morning.some(t => t.id === timeId)) return "morning"
         if (times.afternoon.some(t => t.id === timeId)) return "afternoon"
         if (times.night.some(t => t.id === timeId)) return "night"
     }
-
 
     return (
         <div className="w-full py-20">

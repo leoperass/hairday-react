@@ -3,6 +3,8 @@ import { useState } from "react";
 import ScheduleCard from "./components/schedule/schedule-card";
 import logoHairDay from "./assets/img/logo.png";
 import Icon from "./components/ui/icon";
+import { toast, Toaster } from "sonner";
+import { getTimeLabel } from "./utils/getTimeLabel";
 
 type Schedule = {
   date: string
@@ -30,11 +32,19 @@ export default function App() {
   function handleDeleteSchedule(timeId: number, date: string) {
     setSchedules(prev =>
       prev.filter(s => !(s.timeId === timeId && s.date === date))
-    )
+    );
+
+    const timeLabel = getTimeLabel(timeId);
+
+    toast("Agendamento removido 🗑️", {
+      description: `Horário ${timeLabel} liberado`,
+    });
   }
 
   return (
     <>
+      <Toaster position="bottom-right"/>
+
       <div className="flex items-center py-6 justify-center min-h-screen bg-gray-800">
 
         <div className="flex flex-col lg:flex-row w-full max-w-[1400px] mx-3 gap-6 lg:gap-35">
