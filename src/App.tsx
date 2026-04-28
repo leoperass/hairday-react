@@ -37,7 +37,7 @@ export default function App() {
     const timeLabel = getTimeLabel(timeId);
 
     toast("Agendamento removido 🗑️", {
-      description: `Horário ${timeLabel} liberado`,
+      description: `Horário ${timeLabel} liberado!`,
     });
   }
 
